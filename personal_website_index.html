@@ -1,0 +1,185 @@
+<!--
+Simple single-file personal website (index.html)
+Theme: soft beige (suitable for Khairy's scrapbook / personal site)
+Includes: Home, About, Gallery, Podcast/Video placeholder, Contact
+How to use:
+ 1. Download this file (or copy its contents) and save as `index.html`.
+ 2. Edit text/images directly in the file (look for <!-- EDIT HERE --> markers).
+ 3. To host for FREE: push to GitHub and enable GitHub Pages (branch: main, folder: /), or drag-and-drop the file to Netlify Drop or Cloudflare Pages.
+
+Notes:
+ - Contact form uses mailto fallback (no server required). For a working form you can use services like Formspree or Netlify Forms.
+ - Replace placeholder images by changing the <img> src (they're using base64 or placeholder URLs).
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Soft-Beige Personal Site</title>
+  <meta name="description" content="Simple personal website — edit and host for free." />
+  <style>
+    :root{
+      --beige:#f7efe6; /* background */
+      --accent:#c9b59b; /* warm accent */
+      --muted:#8b7f74; /* text */
+      --white:#ffffff;
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--beige),#fff);color:var(--muted);-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--max-width);margin:30px auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--white),var(--accent));box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted)}
+    nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px;align-items:center}
+    .card{background:var(--white);padding:22px;border-radius:16px;box-shadow:var(--shadow)}
+    h1{margin:0 0 6px 0;font-size:28px;color:#4c4137}
+    p.lead{margin:0;color:#6d645d}
+    .cta{display:inline-block;margin-top:12px;padding:10px 16px;border-radius:10px;background:var(--accent);color:white;text-decoration:none;font-weight:700}
+    .profile{display:flex;flex-direction:column;gap:12px;align-items:center}
+    .avatar{width:220px;height:220px;border-radius:18px;object-fit:cover;box-shadow:var(--shadow)}
+    /* gallery */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .grid img{width:100%;height:140px;object-fit:cover;border-radius:10px;cursor:pointer}
+    footer{margin-top:28px;text-align:center;color:#a39686;font-size:14px}
+    .small{font-size:13px;color:#9a8f85}
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .avatar{width:160px;height:160px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:520px){
+      nav{display:none}
+      header{padding:0 6px}
+      .grid{grid-template-columns:1fr}
+    }
+    /* modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal .content{max-width:900px;width:100%;background:white;padding:14px;border-radius:10px}
+    .close-btn{background:transparent;border:0;font-size:20px;float:right}
+    /* contact */
+    form{display:grid;gap:8px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #e7ded3;font-size:14px}
+    button{padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:white;font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">YK</div>
+        <div>
+          <div style="font-weight:800;color:#4c4137">Khairy's Corner</div>
+          <div class="small">soft beige scrapbook • simple personal site</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#media">Media</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section id="home" class="hero">
+      <div>
+        <div class="card">
+          <h1>Hi — I'm Khairy.</h1>
+          <p class="lead">A small, warm place to keep memories, notes, and a little podcast-style message. Edit any text or image in this single file to personalize it.</p>
+          <a class="cta" href="#media">Listen to my message</a>
+          <div style="margin-top:14px" class="small">Tip: host this file on GitHub Pages for free — see instructions below.</div>
+        </div>
+
+        <div id="about" class="card" style="margin-top:14px">
+          <h3>About</h3>
+          <p class="small"><!-- EDIT HERE: change this paragraph to your story -->I make little projects, keep memories, and collect small moments that make life sweeter. This site is a simple, single-file website you can edit and host for free.</p>
+        </div>
+
+        <div id="gallery" class="card" style="margin-top:14px">
+          <h3>Gallery</h3>
+          <div class="grid">
+            <!-- EDIT HERE: replace image URLs with your photos -->
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="photo1" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1544931365-6c3b9b1d9f1e?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="photo2" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1509418315866-7b3d1a3d6b97?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="photo3" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="profile">
+        <img class="avatar card" src="https://images.unsplash.com/photo-1545996124-1b3c4e1b66b1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="avatar">
+        <div class="card" style="text-align:center;">
+          <div style="font-weight:700;color:#4c4137">Khairy & Yenza</div>
+          <div class="small">A place for small memories: first call, first video, matching Raya colours — all editable.</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="media" class="card" style="margin-top:18px">
+      <h3>Podcast / Video</h3>
+      <p class="small">Click play to hear a short message. Replace the `src` with your audio/video file or an embedded player link (e.g., YouTube embed).</p>
+      <!-- Example using HTML5 audio, replace src with your file or host it somewhere -->
+      <audio controls style="width:100%" src="">
+        Your browser does not support the audio element.
+      </audio>
+      <div style="margin-top:12px" class="small">Or paste a YouTube embed iframe below (replace the src in the iframe).</div>
+      <!-- Example iframe (commented) -->
+      <!-- <iframe width="100%" height="250" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
+    </section>
+
+    <section id="contact" class="card" style="margin-top:18px">
+      <h3>Contact</h3>
+      <form onsubmit="mailtoSubmit(event)">
+        <input id="name" placeholder="Your name" required>
+        <input id="email" type="email" placeholder="Your email" required>
+        <textarea id="message" rows="4" placeholder="Message" required></textarea>
+        <div style="display:flex;gap:8px">
+          <button type="submit">Send</button>
+          <a class="small" href="mailto:your@email.com?subject=Hello%20Khairy" style="align-self:center;margin-left:8px">Or email directly</a>
+        </div>
+      </form>
+      <div style="margin-top:10px" class="small">Want a private video only Yenza can access? Host the video on a private service and share the link (or protect with a password) — you can also generate a QR code that links to it.</div>
+    </section>
+
+    <footer>
+      <div class="small">Made with ♥ — edit this file and host for free on GitHub Pages or Netlify.</div>
+    </footer>
+  </div>
+
+  <div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="content">
+      <button class="close-btn" onclick="closeModal(event)">✕</button>
+      <img id="modal-img" src="" style="width:100%;height:auto;border-radius:8px">
+    </div>
+  </div>
+
+  <script>
+    function openModal(src){
+      const m = document.getElementById('modal');
+      const img = document.getElementById('modal-img');
+      img.src = src; m.style.display = 'flex';
+    }
+    function closeModal(e){
+      if(e) e.stopPropagation();
+      document.getElementById('modal').style.display = 'none';
+    }
+    function mailtoSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const msg = document.getElementById('message').value;
+      const subject = encodeURIComponent('Website message from ' + name);
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+msg);
+      window.location.href = 'mailto:your@email.com?subject='+subject+'&body='+body;
+    }
+  </script>
+</body>
+</html>
